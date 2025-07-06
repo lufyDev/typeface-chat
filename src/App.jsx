@@ -1,12 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import Sidebar from './components/Sidebar';
+import ChatArea from './components/ChatArea';
 
 function App() {
-
   return (
-      <div className='bg-red-500'>
-        <h1>Hello World</h1>
+    <Provider store={store}>
+      <div className="flex h-screen bg-gray-100">
+        <Sidebar />
+        <ChatArea />
       </div>
-  )
+    </Provider>
+  );
 }
 
-export default App
+export default App;
