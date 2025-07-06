@@ -28,7 +28,7 @@ const Sidebar = () => {
   return (
     <div
       className={`bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ${
-        isCollapsed ? 'w-16' : 'w-72'
+        isCollapsed ? 'w-[70px]' : 'w-72'
       }`}
     >
       <div className="relative">
@@ -40,7 +40,7 @@ const Sidebar = () => {
         </button>
       </div>
 
-      <div className={`p-4 border-b ${isCollapsed ? 'items-center' : ''}`}>
+      <div className={`p-4 border-b ${isCollapsed ? 'items-center ' : ''}`}>
         {!isCollapsed && (
           <>
             <form onSubmit={handleCreateChat} className="mb-2">
