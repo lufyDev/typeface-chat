@@ -28,7 +28,7 @@ const Sidebar = () => {
   return (
     <div
       className={`bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ${
-        isCollapsed ? 'w-16' : 'w-64'
+        isCollapsed ? 'w-16' : 'w-72'
       }`}
     >
       <div className="relative">
