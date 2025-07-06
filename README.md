@@ -15,6 +15,7 @@ A modern chat interface built with React and Redux, featuring a clean and respon
 - Responsive layout that works on all screen sizes
 - Collapsible sidebar for better space utilization
 - Message timestamps
+- User identifier
 - Typing indicators
 - Empty state displays
 
@@ -92,6 +93,7 @@ src/
 - Send and receive messages
 - Message status indicators (sent/delivered)
 - Timestamp display
+- User identification
 - Auto-scroll to new messages
 - Typing indicators
 
