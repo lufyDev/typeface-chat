@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { sendMessage } from '../store/slices/chatSlice';
 import moment from 'moment';
-import { BsSend } from 'react-icons/bs';
+import { BsSend, BsChatSquareText } from 'react-icons/bs';
+import ChatHeader from './ChatHeader';
 
 const Message = ({ message }) => (
   <div className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'} mb-4`}>
@@ -16,6 +17,18 @@ const Message = ({ message }) => (
     <span className="text-xs text-gray-500 mt-1">
       {moment(message.timestamp).format('LT')}
     </span>
+  </div>
+);
+
+const EmptyState = () => (
+  <div className="flex-1 flex flex-col items-center justify-center bg-gray-50 text-center p-8">
+    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+      <BsChatSquareText className="w-8 h-8 text-blue-500" />
+    </div>
+    <h3 className="text-xl font-semibold mb-2">No Chat Selected</h3>
+    <p className="text-gray-500 max-w-sm">
+      Select an existing chat from the sidebar or create a new one to start messaging
+    </p>
   </div>
 );
 
@@ -44,19 +57,20 @@ const ChatArea = () => {
   };
 
   if (!activeChat) {
-    return (
-      <div className="flex-1 flex items-center justify-center bg-gray-50">
-        <p className="text-gray-500">Select or create a chat to start messaging</p>
-      </div>
-    );
+    return <EmptyState />;
   }
 
   return (
     <div className="flex-1 flex flex-col bg-white">
+      <ChatHeader />
       <div className="flex-1 overflow-y-auto p-4">
-        {activeMessages.map((msg) => (
-          <Message key={msg.id} message={msg} />
-        ))}
+        {activeMessages.length === 0 ? (
+          <div className="flex items-center justify-center h-full text-gray-500">
+            No messages yet. Start the conversation!
+          </div>
+        ) : (
+          activeMessages.map((msg) => <Message key={msg.id} message={msg} />)
+        )}
         <div ref={messagesEndRef} />
       </div>
 
