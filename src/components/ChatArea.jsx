@@ -1,24 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { sendMessage } from '../store/slices/chatSlice';
-import moment from 'moment';
 import { BsSend, BsChatSquareText } from 'react-icons/bs';
 import ChatHeader from './ChatHeader';
-
-const Message = ({ message }) => (
-  <div className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'} mb-4`}>
-    <div
-      className={`max-w-[70%] p-3 rounded-lg ${
-        message.sender === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-      }`}
-    >
-      {message.content}
-    </div>
-    <span className="text-xs text-gray-500 mt-1">
-      {moment(message.timestamp).format('LT')}
-    </span>
-  </div>
-);
+import Message from './Message';
 
 const EmptyState = () => (
   <div className="flex-1 flex flex-col items-center justify-center bg-gray-50 text-center p-8">

@@ -36,11 +36,30 @@ const chatSlice = createSlice({
           content: action.payload,
           timestamp: new Date().toISOString(),
           sender: 'user',
+          status: 'sent',
         });
+        
+        // Simulate message delivery after 1 second
+        setTimeout(() => {
+          const messageIndex = chat.messages.findIndex(m => m.content === action.payload);
+          if (messageIndex !== -1) {
+            chat.messages[messageIndex].status = 'delivered';
+          }
+        }, 1000);
+      }
+    },
+    updateMessageStatus: (state, action) => {
+      const { chatId, messageId, status } = action.payload;
+      const chat = state.chats.find(c => c.id === chatId);
+      if (chat) {
+        const message = chat.messages.find(m => m.id === messageId);
+        if (message) {
+          message.status = status;
+        }
       }
     },
   },
 });
 
-export const { createChat, setActiveChat, deleteChat, sendMessage } = chatSlice.actions;
+export const { createChat, setActiveChat, deleteChat, sendMessage, updateMessageStatus } = chatSlice.actions;
 export default chatSlice.reducer; 
