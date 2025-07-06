@@ -18,6 +18,9 @@ const Message = ({ message }) => {
 
   return (
     <div className={`flex flex-col ${isUser ? 'items-end' : 'items-start'} mb-4`}>
+      <span className={`text-sm text-gray-600 mb-1 ${isUser ? 'text-right' : 'text-left'}`}>
+        {message.sender}
+      </span>
       <div className="flex items-end gap-1">
         <div
           className={`max-w-[70%] p-3 rounded-lg ${
